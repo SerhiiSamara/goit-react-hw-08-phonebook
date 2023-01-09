@@ -1,11 +1,11 @@
 import styled from 'styled-components';
 
 export const Container = styled.ul`
-display: inline-block;
+  display: inline-block;
   width: 600px;
   margin-left: 20px;
   margin-top: 10px;
-	margin-right: 0;
+  margin-right: 0;
   padding: 20px;
 `;
 
