@@ -1,8 +1,14 @@
 import { addContact } from 'redux/contacts/operations';
 import { useSelector, useDispatch } from 'react-redux';
 import { useState } from 'react';
+import {
+  ChakraProvider,
+  Button,
+  Input,
+  Text,
+  FormLabel,
+} from '@chakra-ui/react';
 
-import { Label, Form, Input } from './ContactForm.styled';
 import { selectContacts } from 'redux/contacts/selectors';
 
 export const ContactForm = () => {
@@ -45,33 +51,44 @@ export const ContactForm = () => {
   };
 
   return (
-    <Form onSubmit={handleSubmit}>
-      <Label htmlFor="">
-        Name
-        <Input
-          type="text"
-          name="name"
-          value={name}
-          pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
-          title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
-          required
-          onChange={handleChange}
-        />
-      </Label>
-      <Label>
-        Number
-        <Input
-          type="tel"
-          name="number"
-          value={number}
-          pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
-          title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
-          required
-          onChange={handleChange}
-        />
-      </Label>
-
-      <button type="submit">Add contact</button>
-    </Form>
+    <ChakraProvider>
+      <form onSubmit={handleSubmit}>
+        <FormLabel>
+          <Text>Name</Text>
+          <Input
+            type="text"
+            name="name"
+            value={name}
+            placeholder="Enter email"
+            htmlSize={30}
+						width="auto"
+						bg='white'
+            pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
+            title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
+            required
+            onChange={handleChange}
+          />
+        </FormLabel>
+        <FormLabel>
+          <Text>Number</Text>
+          <Input
+            type="tel"
+            name="number"
+            value={number}
+            placeholder="Enter email"
+            htmlSize={30}
+						width="auto"
+						bg='white'
+            pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
+            title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
+            required
+            onChange={handleChange}
+          />
+        </FormLabel>
+        <Button type="submit" colorScheme="blue">
+          Add contact
+        </Button>
+      </form>
+    </ChakraProvider>
   );
 };

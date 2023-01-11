@@ -1,7 +1,14 @@
 import { useDispatch } from 'react-redux';
+import {
+  ChakraProvider,
+  Button,
+  Input,
+  Text,
+  FormLabel,
+  Box,
+} from '@chakra-ui/react';
 
 import { register } from 'redux/auth/operation';
-import { Form, Label } from './RegisterForm.styled';
 
 export const RegisterForm = () => {
   const dispatch = useDispatch();
@@ -20,20 +27,47 @@ export const RegisterForm = () => {
     form.reset();
   };
   return (
-    <Form onSubmit={handleSubmit} autoComplete="off">
-      <Label>
-        <p>Username</p>
-        <input type="text" name="name" />
-      </Label>
-      <Label>
-        <p>Email</p>
-        <input type="email" name="email" />
-      </Label>
-      <Label>
-        <p>Password</p>
-        <input type="password" name="password" />
-      </Label>
-      <button type="submit">Register</button>
-    </Form>
+    <ChakraProvider>
+      <Box w="40%" mr="auto" ml="auto" mt='50'>
+        <form onSubmit={handleSubmit} autoComplete="off">
+          <FormLabel>
+            <Text>Username</Text>
+            <Input
+              type="text"
+              name="name"
+              placeholder="Enter your name"
+              htmlSize={30}
+							width="auto"
+							bg='white'
+            />
+          </FormLabel>
+          <FormLabel>
+            <Text>Email</Text>
+            <Input
+              type="email"
+              name="email"
+              placeholder="Enter your email"
+              htmlSize={30}
+							width="auto"
+							bg='white'
+            />
+          </FormLabel>
+          <FormLabel>
+            <Text>Password</Text>
+            <Input
+              type="password"
+              name="password"
+              placeholder="Enter your password"
+              htmlSize={30}
+							width="auto"
+							bg='white'
+            />
+          </FormLabel>
+          <Button type="submit" colorScheme="blue">
+            Register
+          </Button>
+        </form>
+      </Box>
+    </ChakraProvider>
   );
 };

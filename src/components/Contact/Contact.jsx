@@ -1,21 +1,31 @@
 import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
+import * as React from 'react';
+import { ChakraProvider, Button, Text, Flex, Box } from '@chakra-ui/react';
 import { deleteContact } from 'redux/contacts/operations';
 
-import { Container, User, Button } from './Contact.styled';
 
 export const Contact = ({ name, number, id }) => {
   const dispatch = useDispatch();
   const deleteUser = () => dispatch(deleteContact(id));
   return (
-    <Container>
-      <User>
-        {name}: {number}
-      </User>
-      <Button type="button" onClick={deleteUser}>
-        Delete
-      </Button>
-    </Container>
+    <ChakraProvider>
+			<Box>
+				<Flex>
+        <Flex>
+					<Box w='200px' mb='15px'>
+						<Text fontSize='16px'>{name}: </Text>
+					</Box>
+					<Box w='100px'>
+						<Text fontSize='16px'>{number}</Text>
+					</Box>
+        </Flex>
+        <Button type="button" colorScheme="blue" size="sm" onClick={deleteUser}>
+          Delete
+        </Button>
+      </Flex>
+			</Box>
+    </ChakraProvider>
   );
 };
 

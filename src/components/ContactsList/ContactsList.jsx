@@ -1,8 +1,13 @@
 import { useSelector } from 'react-redux';
 import { selectContacts, selectFilter } from 'redux/contacts/selectors';
+import {
+  ChakraProvider,
+  OrderedList,
+  ListItem,
+  Center,
+} from '@chakra-ui/react';
 
 import { Contact } from '../Contact/Contact';
-import { Container, Item } from './ContactsList.styled';
 
 export const ContactsList = () => {
   const contacts = useSelector(selectContacts);
@@ -11,12 +16,16 @@ export const ContactsList = () => {
     contact.name.toLowerCase().includes(filter.toLowerCase())
   );
   return (
-    <Container>
-      {filteredContacts.map(({ name, number, id }) => (
-        <Item key={id}>
-          <Contact name={name} number={number} id={id} />
-        </Item>
-      ))}
-    </Container>
+    <ChakraProvider>
+      <OrderedList pt='10px'>
+        {filteredContacts.map(({ name, number, id }) => (
+          <Center>
+            <ListItem key={id} >
+              <Contact name={name} number={number} id={id} />
+            </ListItem>
+          </Center>
+        ))}
+      </OrderedList>
+    </ChakraProvider>
   );
 };

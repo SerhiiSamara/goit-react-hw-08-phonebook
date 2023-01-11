@@ -3,6 +3,8 @@ import { lazy, useEffect } from 'react';
 import 'modern-normalize';
 import { Route, Routes } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
+import * as React from 'react';
+import { Box, Center, ChakraProvider, Spinner, Text } from '@chakra-ui/react';
 
 import { Layout } from './Layout/Layout';
 import { RestrictedRoute } from './RestrictedRoute';
@@ -16,16 +18,27 @@ const LoginPage = lazy(() => import('../pages/Login'));
 const ContactsPage = lazy(() => import('../pages/Contacts/Contacts'));
 
 export const App = () => {
-	const dispatch = useDispatch();
-	const { isRefreshing } = useAuth();
+  const dispatch = useDispatch();
+  const { isRefreshing } = useAuth();
 
   useEffect(() => {
     dispatch(refreshUser());
   }, [dispatch]);
 
-	return isRefreshing ? (
-		<b>Refreshing user...</b>
-	) : (
+  return isRefreshing ? (
+    <ChakraProvider>
+      <Center>
+        <Box mt='50%' mb='20px'>
+          <Text>Refreshing user</Text>
+        </Box>
+      </Center>
+      <Center>
+        <Box>
+          <Spinner color="red.500" />
+        </Box>
+      </Center>
+    </ChakraProvider>
+  ) : (
     <>
       <Routes>
         <Route path="/" element={<Layout />}>

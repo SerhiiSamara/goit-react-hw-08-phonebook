@@ -1,7 +1,11 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-  max-width: 960px;
-  margin: 0 auto;
-  padding: 0 16px;
+  max-width: 800px;
+  height: 100vh;
+  margin-right: auto;
+  margin-left: auto;
+  padding-right: 15px;
+  padding-left: 15px;
+  background-color: #e6edf4;
 `;
