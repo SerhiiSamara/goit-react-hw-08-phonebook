@@ -17,15 +17,15 @@ export const ContactsList = () => {
   );
   return (
     <ChakraProvider>
-      <OrderedList pt='10px'>
-        {filteredContacts.map(({ name, number, id }) => (
-          <Center>
-            <ListItem key={id} >
+      <Center>
+        <OrderedList pt="10px">
+          {filteredContacts.map(({ name, number, id }) => (
+            <ListItem key={id}>
               <Contact name={name} number={number} id={id} />
             </ListItem>
-          </Center>
-        ))}
-      </OrderedList>
+          ))}
+        </OrderedList>
+      </Center>
     </ChakraProvider>
   );
 };
